@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 //global variable to handle shared Data
-var sharedNote = Note(timestamp: Date.now, image: Data(), tag: "")
+// var sharedNote = Note(timestamp: Date.now, image: Data(), tag: "", title: "")
 
 //test
  
@@ -50,8 +50,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             print(importedNote.title ??  "test")
             
             
-            let newItem = Note(timestamp: importedNote.timestamp!, image: importedNote.image!, tag: importedNote.title ?? "test")
-                sharedNote = newItem
+            let newItem = Note(timestamp: importedNote.timestamp!, image: importedNote.image!, tag: importedNote.tag ?? "Missing tag", title: importedNote.title ?? "Untitled")
+            sharedModelContainer.mainContext.insert(newItem)
  
             
          } catch {

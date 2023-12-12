@@ -15,7 +15,7 @@ import UniformTypeIdentifiers
 class Note:  Codable{
     
     enum CodingKeys: CodingKey {
-        case timestamp, image, tag
+        case timestamp, image, tag, title
       }
 
     
@@ -34,13 +34,16 @@ class Note:  Codable{
         self.timestamp = Date.now
         self.image = Data()
         self.tag = ""
+        self.title = ""
+
     }
     
  
-     init(timestamp: Date, image: Data, tag: String) {
+    init(timestamp: Date, image: Data, tag: String, title: String) {
         self.timestamp = timestamp
         self.image = image
-        self.tag = tag    }
+        self.tag = tag  
+        self.title = title}
     
     //init for codable
     
@@ -49,6 +52,8 @@ class Note:  Codable{
       self.timestamp = try container.decode(Date.self, forKey: .timestamp)
       self.image = try container.decode(Data.self, forKey: .image)
       self.tag = try container.decode(String.self, forKey: .tag)
+        self.title = try container.decode(String.self, forKey: .title)
+
 
     }
     
@@ -57,6 +62,8 @@ class Note:  Codable{
         try container.encode(timestamp, forKey: .timestamp)
          try container.encode(image, forKey: .image)
         try container.encode(tag, forKey: .tag)
+        try container.encode(title, forKey: .title)
+
 
     }
  
