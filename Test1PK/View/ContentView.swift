@@ -29,11 +29,7 @@ struct ContentView: View {
                              
                         
                         }
-                        ShareLink(
-                             item: note,
-                             preview: SharePreview(note.title ?? "Untitled",
-                                                   image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
-                                                   
+                        
                     }
                     .onDelete(perform: deleteItems)
                     

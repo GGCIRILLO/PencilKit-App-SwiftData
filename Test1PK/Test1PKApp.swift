@@ -47,10 +47,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let importedNote = try decoder.decode(Note.self, from: data)
-            print(importedNote.title!)
+            print(importedNote.title ??  "test")
             
             
-            let newItem = Note(timestamp: importedNote.timestamp!, image: importedNote.image!, tag: importedNote.title!)
+            let newItem = Note(timestamp: importedNote.timestamp!, image: importedNote.image!, tag: importedNote.title ?? "test")
                 sharedNote = newItem
  
             
