@@ -46,7 +46,7 @@ struct NoteRepresentableView : UIViewControllerRepresentable {
 
                 let result = try modelContext.fetch(descriptor)
                 let note = result.first
-                note?.noteData = updatedData
+                note?.image = updatedData
                 
                 do {
                     // Save the changes to SwiftData.
