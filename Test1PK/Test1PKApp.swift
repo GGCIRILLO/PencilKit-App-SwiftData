@@ -13,6 +13,7 @@ import TipKit
 
 @main
 class AppDelegate: NSObject, UIApplicationDelegate {
+    @State var pomodoroModel : PomodoroModel = .init()
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -44,6 +45,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 }
                 
             }
+            .environment(pomodoroModel)
             .modelContainer(sharedModelContainer)
             .preferredColorScheme(.light)
         )
