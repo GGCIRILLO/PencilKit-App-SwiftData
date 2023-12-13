@@ -45,6 +45,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 
             }
             .modelContainer(sharedModelContainer)
+            .preferredColorScheme(.light)
         )
         window.makeKeyAndVisible()
         return true

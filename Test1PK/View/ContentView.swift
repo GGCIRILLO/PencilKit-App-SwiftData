@@ -13,7 +13,6 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var notes : [Note]
-    
     @State private var showSheet = false
     
     let craftNewNote = CraftNewNote()
@@ -25,28 +24,44 @@ struct ContentView: View {
             VStack {
                 // List of drawings with navigation links to DrawingView(open the drawing)
                 
-                Form {
-                    if !notes.isEmpty{
-                        TipView(shareNoteTip)
-                            .frame(height: 40)
-                    }
-                    
-                    Section{
-                        
-                        ForEach(notes) { note in
-                            NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
-                                
+                ScrollView {
+                if !notes.isEmpty{
+                    TipView(shareNoteTip)
+                        .frame(height: 40)
+                        .padding()
+                }
+                
+    
+                ForEach(notes) { note in
+                    NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 60)
+                                .shadow(radius: 2)
+                            HStack {
                                 Text(note.title ?? "Untitled")
-                                    .contextMenu(ContextMenu(menuItems: {
-                                        ShareLink(
-                                            item: note,
-                                            preview: SharePreview(note.title ?? "Untitled", image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
-                                    }))
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.black)
+                                Spacer()
+                                Image(systemName: "chevron.right")
                             }
+                            .padding()
                         }
-                        .onDelete(perform: deleteItems)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .contextMenu(ContextMenu(menuItems: {
+                            ShareLink(
+                                item: note,
+                                preview: SharePreview(note.title ?? "Untitled", image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
+                        }))
                     }
                 }
+                .onDelete(perform: deleteItems)
+            }
+                
                 .navigationTitle("Notes")
                 .toolbar {
                     // Button to show the sheet for adding a new canvas
@@ -57,9 +72,7 @@ struct ContentView: View {
                         HStack {
                             Image(systemName: "square.and.pencil")
                         }
-                        .foregroundStyle(.blue)
-                        
-                            .popoverTip(craftNewNote)
+                        .popoverTip(craftNewNote)
                     })
                 }
                 Spacer()
@@ -92,7 +105,6 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .task {
-//            try? Tips.resetDatastore()
             try? Tips.configure([
                 Tips.ConfigurationOption
                 .datastoreLocation(.applicationDefault)])

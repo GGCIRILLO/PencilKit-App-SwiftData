@@ -19,12 +19,14 @@ struct AddNewNoteView: View {
     // State for storing the canvas title.
     @State private var noteTitle = ""
     
+    @State private var noteTag = ""
+    
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     // Text field for entering the canvas title.
-                    TextField("Note Title", text: $noteTitle)
+                    TextField("Note title", text: $noteTitle)
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -41,8 +43,9 @@ struct AddNewNoteView: View {
                         // Create a new Drawing entity in the CoreData managed object context.
                         let note = Note()
                         
-                        // Set the title of the drawing to the entered canvas title.
+                        // Set the title and tag of the drawing to the entered canvas title.
                         note.title = noteTitle
+                        note.tag = noteTag
                         modelContext.insert(note)
                         
                         do {
