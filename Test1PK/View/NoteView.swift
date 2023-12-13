@@ -15,6 +15,7 @@ struct NoteView: View {
     
     var body: some View {
         NoteRepresentableView(data: data ?? Data(), id: id ?? UUID())
+            .navigationTitle(title ?? "Untitled")
     }
 }
 

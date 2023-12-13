@@ -7,11 +7,8 @@
 
 import SwiftUI
 import SwiftData
-//global variable to handle shared Data
-// var sharedNote = Note(timestamp: Date.now, image: Data(), tag: "", title: "")
+import TipKit
 
-//test
- 
 
 
 @main
@@ -22,20 +19,33 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             Note.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow()
         self.window = window
-        window.rootViewController = UIHostingController(rootView: ContentView().modelContainer(sharedModelContainer))
+        window.rootViewController = UIHostingController(rootView:
+            ContentView()
+            .task {
+                do {
+                    try Tips.configure([
+                        Tips.ConfigurationOption
+                            .datastoreLocation(.applicationDefault)])
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            }
+            .modelContainer(sharedModelContainer)
+        )
         window.makeKeyAndVisible()
         return true
     }
@@ -52,41 +62,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             
             let newItem = Note(timestamp: importedNote.timestamp!, image: importedNote.image!, tag: importedNote.tag ?? "Missing tag", title: importedNote.title ?? "Untitled")
             sharedModelContainer.mainContext.insert(newItem)
- 
             
-         } catch {
+            
+        } catch {
             print("Unable to load data: \(error)")
         }
         
         return true
     }
     
-
     
-}
-
-
-
-
- 
-struct Test1PKApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Note.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .modelContainer(sharedModelContainer)
-    }
+    
 }

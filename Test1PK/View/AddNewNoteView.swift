@@ -28,7 +28,7 @@ struct AddNewNoteView: View {
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .navigationTitle(Text("Add new canvas"))
+            .navigationTitle(Text("Craft a new note"))
             .navigationBarItems(
                 leading: Button(action: {
                     dismiss()

@@ -25,7 +25,6 @@ class Note:  Codable{
     
     var id: UUID = UUID()
 
-     
      var tag: String?
     
     var title: String?

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     
@@ -14,48 +15,58 @@ struct ContentView: View {
     @Query private var notes : [Note]
     
     @State private var showSheet = false
-
+    
+    let craftNewNote = CraftNewNote()
+    let shareNoteTip = shareNote()
+    
     var body: some View {
         NavigationView {
+            
             VStack {
                 // List of drawings with navigation links to DrawingView(open the drawing)
+                
                 Form {
-                    ForEach(notes) { note in
-                        NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
-                            
-                            Text(note.title ?? "Untitled")
-    
-                             
-                        
-                        }
-                        
-                        ShareLink(
-                                                   item: note,
-                                                   preview: SharePreview(note.title ?? "Untitled",
-                                                                         image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
-                        
-                        
-                        
+                    if !notes.isEmpty{
+                        TipView(shareNoteTip)
+                            .frame(height: 40)
                     }
-                    .onDelete(perform: deleteItems)
+                    
+                    Section{
+                        
+                        ForEach(notes) { note in
+                            NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
+                                
+                                Text(note.title ?? "Untitled")
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        ShareLink(
+                                            item: note,
+                                            preview: SharePreview(note.title ?? "Untitled", image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
+                                    }))
+                            }
+                        }
+                        .onDelete(perform: deleteItems)
+                    }
+                }
+                .navigationTitle("Notes")
+                .toolbar {
                     // Button to show the sheet for adding a new canvas
                     Button(action: {
                         showSheet.toggle()
+                        craftNewNote.invalidate(reason: .actionPerformed)
                     }, label: {
                         HStack {
-                            Image(systemName: "plus")
-                            Text("Add Canvas")
+                            Image(systemName: "square.and.pencil")
                         }
                         .foregroundStyle(.blue)
-                    })
-                    .sheet(isPresented: $showSheet, content: {
-                        AddNewNoteView()
+                        
+                            .popoverTip(craftNewNote)
                     })
                 }
-                .navigationTitle("Drawings")
-                .toolbar {
-                    EditButton()
-                }
+                Spacer()
+                
+                .sheet(isPresented: $showSheet, content: {
+                    AddNewNoteView()
+                })
             }
             
             // Placeholder for when no canvas is selected.
@@ -68,7 +79,7 @@ struct ContentView: View {
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
@@ -80,5 +91,11 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .task {
+//            try? Tips.resetDatastore()
+            try? Tips.configure([
+                Tips.ConfigurationOption
+                .datastoreLocation(.applicationDefault)])
+        }
         .modelContainer(for: Note.self, inMemory: true)
 }
