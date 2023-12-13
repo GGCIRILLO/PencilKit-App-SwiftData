@@ -19,32 +19,25 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 // List of drawings with navigation links to DrawingView(open the drawing)
-                List {
+                Form {
                     ForEach(notes) { note in
+                        NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
+                            
+                            Text(note.title ?? "Untitled")
+    
+                             
+                        
+                        }
+                        
                         ShareLink(
                                                    item: note,
                                                    preview: SharePreview(note.title ?? "Untitled",
                                                                          image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
                         
-                        NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
-                            
-                            Text(note.title ?? "Untitled")
-                            
-                       
-                                                                             
-                            
-                             
-                        
-                        }
                         
                         
                     }
                     .onDelete(perform: deleteItems)
-                    
-                    //Horrible button to save shared data
-                   /* Button("Save Imported Note"){
-                        modelContext.insert(sharedNote)
-                    } */
                     // Button to show the sheet for adding a new canvas
                     Button(action: {
                         showSheet.toggle()

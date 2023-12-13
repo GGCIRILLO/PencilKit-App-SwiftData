@@ -93,8 +93,8 @@ extension UTType {
  
 extension Note : Transferable {
     static var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .Note)
-        }
+        CodableRepresentation(contentType: .Note).suggestedFileName{($0.title ?? "defaultName") + ".noteCraft"}
+     }
     
 }
 
