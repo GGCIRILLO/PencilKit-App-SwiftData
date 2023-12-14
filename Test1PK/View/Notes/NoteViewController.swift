@@ -14,6 +14,7 @@ class NoteViewController: UIViewController {
     lazy var canvas: PKCanvasView = {
         let view = PKCanvasView()
         view.drawingPolicy = .anyInput
+        //test zooming
        view.minimumZoomScale = 0.2
        view.maximumZoomScale = 4.0
         view.translatesAutoresizingMaskIntoConstraints = false

@@ -13,8 +13,7 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var notes : [Note]
-    
-    @State private var showSheet = false
+     @State private var showSheet = false
     
     let craftNewNote = CraftNewNote()
     let shareNoteTip = shareNote()
@@ -34,17 +33,9 @@ struct ContentView: View {
                     Section{
                         
                         ForEach(notes) { note in
-                            NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
-                                
-                                Text(note.title ?? "Untitled")
-                                    .contextMenu(ContextMenu(menuItems: {
-                                        ShareLink(
-                                            item: note,
-                                            preview: SharePreview(note.title ?? "Untitled", image:  Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
-                                    }))
-                            }
+                            NoteListView(note: note)
+                               
                         }
-                        .onDelete(perform: deleteItems)
                     }
                 }
                 .navigationTitle("Notes")
@@ -63,7 +54,7 @@ struct ContentView: View {
                     })
                 }
                 Spacer()
-                
+            
                 .sheet(isPresented: $showSheet, content: {
                     AddNewNoteView()
                 })
@@ -99,3 +90,5 @@ struct ContentView: View {
         }
         .modelContainer(for: Note.self, inMemory: true)
 }
+
+ 

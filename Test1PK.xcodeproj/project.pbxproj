@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		527C0AE52B2B3BA80088AC57 /* ArView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C0AE42B2B3BA80088AC57 /* ArView.swift */; };
+		527C0AE72B2B43AA0088AC57 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C0AE62B2B43AA0088AC57 /* NoteListView.swift */; };
 		E60DF5D82B2767480047C792 /* Test1PKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60DF5D72B2767480047C792 /* Test1PKApp.swift */; };
 		E60DF5DA2B2767480047C792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60DF5D92B2767480047C792 /* ContentView.swift */; };
 		E60DF5DE2B27674A0047C792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E60DF5DD2B27674A0047C792 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		527C0AE42B2B3BA80088AC57 /* ArView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArView.swift; sourceTree = "<group>"; };
+		527C0AE62B2B43AA0088AC57 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		52D497382B28B86B005EE345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E60DF5D42B2767480047C792 /* Test1PK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test1PK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60DF5D72B2767480047C792 /* Test1PKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test1PKApp.swift; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		527C0AC72B2A04870088AC57 /* ArView */ = {
+			isa = PBXGroup;
+			children = (
+				527C0AE42B2B3BA80088AC57 /* ArView.swift */,
+			);
+			path = ArView;
+			sourceTree = "<group>";
+		};
 		E60DF5CB2B2767480047C792 = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +76,10 @@
 		E60DF5D62B2767480047C792 /* Test1PK */ = {
 			isa = PBXGroup;
 			children = (
+				527C0AC72B2A04870088AC57 /* ArView */,
 				52D497382B28B86B005EE345 /* Info.plist */,
 				E60DF5D72B2767480047C792 /* Test1PKApp.swift */,
 				E60DF5EF2B2769E50047C792 /* View */,
-				E60DF5F02B2769F90047C792 /* Model */,
 				E60DF5DD2B27674A0047C792 /* Assets.xcassets */,
 				E60DF5DF2B27674A0047C792 /* Preview Content */,
 			);
@@ -86,8 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				E60DF5D92B2767480047C792 /* ContentView.swift */,
-				E60DF5F12B276A1C0047C792 /* AddNewNoteView.swift */,
+				527C0AE62B2B43AA0088AC57 /* NoteListView.swift */,
 				E60DF5F32B276A330047C792 /* NoteView.swift */,
+				E60DF5F12B276A1C0047C792 /* AddNewNoteView.swift */,
+				E60DF5F02B2769F90047C792 /* Model */,
 				E60DF5F72B276C5F0047C792 /* Notes */,
 			);
 			path = View;
@@ -187,8 +201,10 @@
 				E60DF5EA2B2768240047C792 /* Note.swift in Sources */,
 				E60DF5F92B276D2B0047C792 /* NoteRepresentableView.swift in Sources */,
 				E60DF5F42B276A330047C792 /* NoteView.swift in Sources */,
+				527C0AE72B2B43AA0088AC57 /* NoteListView.swift in Sources */,
 				E60DF5F22B276A1C0047C792 /* AddNewNoteView.swift in Sources */,
 				E60DF5D82B2767480047C792 /* Test1PKApp.swift in Sources */,
+				527C0AE52B2B3BA80088AC57 /* ArView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,11 +339,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Test1PK/Preview Content\"";
-				DEVELOPMENT_TEAM = VY6469W59X;
+				DEVELOPMENT_TEAM = V7ZAPSKXZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Test1PK/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera is required for AR experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -337,7 +354,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = djsjdsjssaas;
+				PRODUCT_BUNDLE_IDENTIFIER = RRFF.212;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -355,11 +372,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Test1PK/Preview Content\"";
-				DEVELOPMENT_TEAM = VY6469W59X;
+				DEVELOPMENT_TEAM = V7ZAPSKXZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Test1PK/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera is required for AR experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -369,7 +387,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = djsjdsjssaas;
+				PRODUCT_BUNDLE_IDENTIFIER = RRFF.212;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
