@@ -35,7 +35,7 @@ struct ContentView: View {
                         ForEach(notes) { note in
                             NoteListView(note: note)
                                
-                        }
+                        }.onDelete(perform: deleteItems)
                     }
                 }
                 .navigationTitle("Notes")
