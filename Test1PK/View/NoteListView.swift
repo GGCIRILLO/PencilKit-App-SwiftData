@@ -35,15 +35,16 @@ struct NoteListView: View {
                     preview: SharePreview(note.title ?? "Untitled", image: Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
                 
                 Button(action: {
-                    self.showArView = true
-                    ArImageData = note.image!
-                    print("[NoteList] ArImageData :" + self.ArImageData.description)
+                   
+                        self.showArView = true
+                        ArImageData = note.image!
+                        print("[NoteList] ArImageData :" + self.ArImageData.description)
                 }, label: {
                     HStack {
                         Text("Ar Mode")
                         Image(systemName: "square.2.layers.3d.top.filled")
                     }
-                })
+                }).disabled(note.image?.isEmpty ?? true)
                 
                 Button(action: {
                     modelContext.delete(note)

@@ -56,7 +56,6 @@
 		527C0AC72B2A04870088AC57 /* ArView */ = {
 			isa = PBXGroup;
 			children = (
-				527C0AE42B2B3BA80088AC57 /* ArView.swift */,
 			);
 			path = ArView;
 			sourceTree = "<group>";
@@ -103,6 +102,7 @@
 				E60DF5D92B2767480047C792 /* ContentView.swift */,
 				527C0AE62B2B43AA0088AC57 /* NoteListView.swift */,
 				524CD9EA2B2C89E7005555B5 /* TimerView.swift */,
+				527C0AE42B2B3BA80088AC57 /* ArView.swift */,
 				E60DF5F32B276A330047C792 /* NoteView.swift */,
 				527C0AC72B2A04870088AC57 /* ArView */,
 				E60DF5F12B276A1C0047C792 /* AddNewNoteView.swift */,
@@ -347,7 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Test1PK/Preview Content\"";
-				DEVELOPMENT_TEAM = VY6469W59X;
+				DEVELOPMENT_TEAM = V7ZAPSKXZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Test1PK/Info.plist;
@@ -362,7 +362,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mhfhtdrtdty;
+				PRODUCT_BUNDLE_IDENTIFIER = RFRR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -380,7 +380,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Test1PK/Preview Content\"";
-				DEVELOPMENT_TEAM = VY6469W59X;
+				DEVELOPMENT_TEAM = V7ZAPSKXZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Test1PK/Info.plist;
@@ -395,7 +395,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mhfhtdrtdty;
+				PRODUCT_BUNDLE_IDENTIFIER = RFRR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
