@@ -13,10 +13,13 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var notes : [Note]
-     @State private var showSheet = false
+    @State private var showNoteSheet = false
     
     let craftNewNote = CraftNewNote()
     let shareNoteTip = shareNote()
+    
+    @Environment(PomodoroModel.self) private var pomodoroModel
+    @State private var showTimerSheet = false
     
     var body: some View {
         NavigationView {
@@ -38,26 +41,36 @@ struct ContentView: View {
                         }.onDelete(perform: deleteItems)
                     }
                 }
+                .onDelete(perform: deleteItems)
+            }
+                
                 .navigationTitle("Notes")
                 .toolbar {
+                    //Button to show the sheet for starting the timer
+                    Button {
+                        showTimerSheet.toggle()
+                    } label: {
+                        Image(systemName: "gauge.with.needle")
+                    }
+
                     // Button to show the sheet for adding a new canvas
                     Button(action: {
-                        showSheet.toggle()
+                        showNoteSheet.toggle()
                         craftNewNote.invalidate(reason: .actionPerformed)
                     }, label: {
-                        HStack {
-                            Image(systemName: "square.and.pencil")
-                        }
-                        .foregroundStyle(.blue)
-                        
-                            .popoverTip(craftNewNote)
+                        Image(systemName: "square.and.pencil")
+                        .popoverTip(craftNewNote)
                     })
                 }
                 Spacer()
-            
-                .sheet(isPresented: $showSheet, content: {
+                
+                .sheet(isPresented: $showNoteSheet, content: {
                     AddNewNoteView()
                 })
+                .sheet(isPresented: $showTimerSheet) {
+                    TimerView()
+                        .environment(pomodoroModel)
+                }
             }
             
             // Placeholder for when no canvas is selected.
@@ -83,11 +96,11 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .task {
-//            try? Tips.resetDatastore()
             try? Tips.configure([
                 Tips.ConfigurationOption
                 .datastoreLocation(.applicationDefault)])
         }
+        .environment(PomodoroModel())
         .modelContainer(for: Note.self, inMemory: true)
 }
 

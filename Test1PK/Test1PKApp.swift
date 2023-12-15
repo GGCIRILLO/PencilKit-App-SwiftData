@@ -14,6 +14,11 @@ import TipKit
 @main
 class AppDelegate: NSObject, UIApplicationDelegate {
     
+    @State var pomodoroModel : PomodoroModel = .init()
+    @Environment (\.scenePhase) var phase 
+    
+    @State var lastActiveTimeStamp : Date = Date()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Note.self,
@@ -44,7 +49,27 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 }
                 
             }
+            .environment(pomodoroModel)
             .modelContainer(sharedModelContainer)
+            .preferredColorScheme(.light)
+            .onChange(of: phase, { [self] oldValue, newValue in
+                if pomodoroModel.isStarted{
+                    if newValue == .background {
+                        lastActiveTimeStamp = Date()
+                    }
+                    if newValue == .active {
+                        let currentTimeStampDiff = Date().timeIntervalSince(lastActiveTimeStamp)
+                        if pomodoroModel.totalSeconds - Int(currentTimeStampDiff) <= 0 {
+                            pomodoroModel.isStarted = false
+                            pomodoroModel.totalSeconds = 0
+                            pomodoroModel.isFinished = true
+                            
+                        } else {
+                            pomodoroModel.totalSeconds -= Int(currentTimeStampDiff)
+                        }
+                    }
+                }
+            })
         )
         window.makeKeyAndVisible()
         return true

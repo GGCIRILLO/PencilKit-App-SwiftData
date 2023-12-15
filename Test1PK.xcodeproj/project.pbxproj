@@ -19,6 +19,8 @@
 		E60DF5F62B276C590047C792 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60DF5F52B276C590047C792 /* NoteViewController.swift */; };
 		E60DF5F92B276D2B0047C792 /* NoteRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60DF5F82B276D2B0047C792 /* NoteRepresentableView.swift */; };
 		E65136FF2B29E926001EA7CA /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65136FE2B29E926001EA7CA /* Tip.swift */; };
+		E65137072B2A0F25001EA7CA /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65137062B2A0F25001EA7CA /* PomodoroModel.swift */; };
+		E65137092B2A10BE001EA7CA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65137082B2A10BE001EA7CA /* TimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		E60DF5F52B276C590047C792 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		E60DF5F82B276D2B0047C792 /* NoteRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepresentableView.swift; sourceTree = "<group>"; };
 		E65136FE2B29E926001EA7CA /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
+		E65137062B2A0F25001EA7CA /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
+		E65137082B2A10BE001EA7CA /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				E60DF5E92B2768240047C792 /* Note.swift */,
+				E65137062B2A0F25001EA7CA /* PomodoroModel.swift */,
 				E65136FE2B29E926001EA7CA /* Tip.swift */,
 			);
 			path = Model;
@@ -195,9 +200,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E65137092B2A10BE001EA7CA /* TimerView.swift in Sources */,
 				E60DF5F62B276C590047C792 /* NoteViewController.swift in Sources */,
 				E65136FF2B29E926001EA7CA /* Tip.swift in Sources */,
 				E60DF5DA2B2767480047C792 /* ContentView.swift in Sources */,
+				E65137072B2A0F25001EA7CA /* PomodoroModel.swift in Sources */,
 				E60DF5EA2B2768240047C792 /* Note.swift in Sources */,
 				E60DF5F92B276D2B0047C792 /* NoteRepresentableView.swift in Sources */,
 				E60DF5F42B276A330047C792 /* NoteView.swift in Sources */,
