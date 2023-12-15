@@ -8,7 +8,8 @@ struct NoteListView: View {
     let note: Note
     @State private var showArView = false
     @State   var  ArImageData: Data = Data()
-    
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
          
             ZStack{
@@ -28,25 +29,36 @@ struct NoteListView: View {
                 .padding()
             
         }
-        .contextMenu {
-            ShareLink(
-                item: note,
-                preview: SharePreview(note.title ?? "Untitled", image: Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
-            
-            Button(action: {
-                self.showArView = true
-                ArImageData = note.image!
-                print("[NoteList] ArImageData :" + self.ArImageData.description)
-            }, label: {
-                HStack {
-                    Text("Ar Mode")
-                    Image(systemName: "square.2.layers.3d.top.filled")
-                }
-            })
-        }
+            .contextMenu {
+                ShareLink(
+                    item: note,
+                    preview: SharePreview(note.title ?? "Untitled", image: Image(uiImage: UIImage(data: note.image ?? Data()) ?? UIImage())))
+                
+                Button(action: {
+                    self.showArView = true
+                    ArImageData = note.image!
+                    print("[NoteList] ArImageData :" + self.ArImageData.description)
+                }, label: {
+                    HStack {
+                        Text("Ar Mode")
+                        Image(systemName: "square.2.layers.3d.top.filled")
+                    }
+                })
+                
+                Button(action: {
+                    modelContext.delete(note)
+                }, label: {
+                    HStack{
+                        Text("Delete note")
+                        Image(systemName: "trash")
+                    }
+                    .foregroundStyle(.red)
+                })
+            }
         .sheet(isPresented:  $showArView) {
             ARViewContainer(arImage: note.image!)
         }
+        
         
     }
 }

@@ -26,7 +26,6 @@ struct ContentView: View {
             
             VStack {
                 // List of drawings with navigation links to DrawingView(open the drawing)
-                
                 ScrollView{
                     if !notes.isEmpty{
                         TipView(shareNoteTip)
@@ -37,7 +36,6 @@ struct ContentView: View {
                         NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)){
                             NoteListView(note: note)
                         }
-//                        .onDelete(perform: deleteItems)
                     }
                     .padding()
                     
@@ -83,13 +81,6 @@ struct ContentView: View {
             }
         }
     
-    }
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(notes[index])
-            }
-        }
     }
 }
 
