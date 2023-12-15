@@ -24,14 +24,14 @@ struct CraftNewNote : Tip {
 
 struct shareNote : Tip {
     var title: Text{
-        Text("Share")
+        Text("Features")
     }
     var message: Text? {
-        Text("Press the note for a while to share")
+        Text("Press the note for a while to discover amazing features...")
     }
     
     var image: Image? {
-        Image(systemName: "square.and.arrow.up")
+        Image(systemName: "wand.and.stars.inverse")
     }
 }
 
