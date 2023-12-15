@@ -27,21 +27,22 @@ struct ContentView: View {
             VStack {
                 // List of drawings with navigation links to DrawingView(open the drawing)
                 
-                Form {
+                ScrollView{
                     if !notes.isEmpty{
                         TipView(shareNoteTip)
                             .frame(height: 40)
+                            .padding()
                     }
-                    
-                    Section{
-                        
-                        ForEach(notes) { note in
+                    ForEach(notes) { note in
+                        NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)){
                             NoteListView(note: note)
-                               
-                        }.onDelete(perform: deleteItems)
+                        }
+//                        .onDelete(perform: deleteItems)
                     }
+                    .padding()
+                    
+                    
                 }
-             }
                 
                 .navigationTitle("Notes")
                 .toolbar {
@@ -51,26 +52,27 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "gauge.with.needle")
                     }
-
+                    
                     // Button to show the sheet for adding a new canvas
                     Button(action: {
                         showNoteSheet.toggle()
                         craftNewNote.invalidate(reason: .actionPerformed)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                        .popoverTip(craftNewNote)
+                            .popoverTip(craftNewNote)
                     })
                 }
                 Spacer()
                 
-                .sheet(isPresented: $showNoteSheet, content: {
-                    AddNewNoteView()
-                })
-                .sheet(isPresented: $showTimerSheet) {
-                    TimerView()
-                        .environment(pomodoroModel)
-                }
-        }.navigationViewStyle(DoubleColumnNavigationViewStyle())
+                    .sheet(isPresented: $showNoteSheet, content: {
+                        AddNewNoteView()
+                    })
+                    .sheet(isPresented: $showTimerSheet) {
+                        TimerView()
+                            .environment(pomodoroModel)
+                    }
+            }
+            .navigationViewStyle(DoubleColumnNavigationViewStyle())
             
             // Placeholder for when no canvas is selected.
             VStack {
@@ -80,6 +82,8 @@ struct ContentView: View {
                     .font(.title)
             }
         }
+    
+    }
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
