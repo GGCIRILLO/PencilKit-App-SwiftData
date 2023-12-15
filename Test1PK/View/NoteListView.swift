@@ -11,7 +11,22 @@ struct NoteListView: View {
 
     var body: some View {
         NavigationLink(destination: NoteView(id: note.id, data: note.image, title: note.title)) {
-            Text(note.title ?? "Untitled")
+            ZStack{
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(.white)
+                                            .frame(maxWidth: .infinity)
+                                            .frame(height: 60)
+                                            .shadow(radius: 2)
+                                        HStack {
+                                            Text(note.title ?? "Untitled")
+                                                .font(.title2)
+                                                .fontWeight(.semibold)
+                                                .foregroundStyle(.black)
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                        }
+                                        .padding()
+                                    }
                 .contextMenu {
                     ShareLink(
                                           item: note,

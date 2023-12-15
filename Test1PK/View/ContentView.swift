@@ -41,8 +41,7 @@ struct ContentView: View {
                         }.onDelete(perform: deleteItems)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
+             }
                 
                 .navigationTitle("Notes")
                 .toolbar {
@@ -71,7 +70,7 @@ struct ContentView: View {
                     TimerView()
                         .environment(pomodoroModel)
                 }
-            }
+        }.navigationViewStyle(DoubleColumnNavigationViewStyle())
             
             // Placeholder for when no canvas is selected.
             VStack {
@@ -81,9 +80,6 @@ struct ContentView: View {
                     .font(.title)
             }
         }
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
-    }
-    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
