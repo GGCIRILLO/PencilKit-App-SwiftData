@@ -39,7 +39,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             ContentView()
             .task {
                 do {
-                    Tips.showAllTipsForTesting()
                     try Tips.configure([
                         Tips.ConfigurationOption
                             .datastoreLocation(.applicationDefault)])

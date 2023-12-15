@@ -13,10 +13,11 @@ class NoteViewController: UIViewController {
     // Lazily initialize the PencilKit canvas view with specific configurations.
     lazy var canvas: PKCanvasView = {
         let view = PKCanvasView()
-        view.drawingPolicy = .anyInput
-        view.minimumZoomScale = 0.2
+        view.drawingPolicy = .default
+        view.minimumZoomScale = 1
         view.maximumZoomScale = 4.0
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
