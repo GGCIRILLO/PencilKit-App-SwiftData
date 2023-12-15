@@ -11,6 +11,7 @@ import TipKit
 
 struct ContentView: View {
     
+    @Environment(\.scenePhase) var phase
     @Environment(\.modelContext) private var modelContext
     @Query private var notes : [Note]
     @State private var showNoteSheet = false
@@ -20,6 +21,8 @@ struct ContentView: View {
     
     @Environment(PomodoroModel.self) private var pomodoroModel
     @State private var showTimerSheet = false
+    @State var lastActiveTimeStamp : Date = Date()
+
     
     var body: some View {
         NavigationView {
@@ -80,6 +83,36 @@ struct ContentView: View {
                     .font(.title)
             }
         }
+        .onChange(of: phase, { [self] oldValue, newValue in
+            if pomodoroModel.isStarted{
+                // Handling the scenario when the app transitions to the background
+                if newValue == .background {
+                    // Updating the last active timestamp to the current date
+                    lastActiveTimeStamp = Date()
+                }
+                
+                // Handling the scenario when the app transitions to the active state
+                if newValue == .active {
+                    
+                    // Calculating the time difference since the app was last active
+                    let currentTimeStampDiff = Date().timeIntervalSince(lastActiveTimeStamp)
+                    
+                    // Checking if the remaining time in the Pomodoro timer is less than or equal to 0
+                    if pomodoroModel.totalSeconds - Int(currentTimeStampDiff) <= 0 {
+                        
+                        // If the remaining time is zero or negative, marking the Pomodoro as finished
+                        pomodoroModel.isStarted = false
+                        pomodoroModel.totalSeconds = 0
+                        pomodoroModel.isFinished = true
+                        
+                    } else {
+                        
+                        // If there is still time remaining, subtracting the time difference from the total seconds
+                        pomodoroModel.totalSeconds -= Int(currentTimeStampDiff)
+                    }
+                }
+            }
+        })
     
     }
 }

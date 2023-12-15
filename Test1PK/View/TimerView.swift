@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimerView: View {
     @Environment (PomodoroModel.self) var pomodoroModel : PomodoroModel
-    
+    let timerTip = startTimer()
     
     var body: some View {
         VStack{
@@ -91,6 +91,7 @@ struct TimerView: View {
                                 }
                         })
                         .disabled(pomodoroModel.isStarted ? false : true)
+                        .popoverTip(timerTip)
                         
                         Spacer()
                         
@@ -126,6 +127,8 @@ struct TimerView: View {
                                         pomodoroModel.minutes = value
                                     }
                                 }
+                                
+                            
                             Text("\(pomodoroModel.seconds) sec")
                                 .font(.title3)
                                 .fontWeight(.semibold)
@@ -146,6 +149,7 @@ struct TimerView: View {
                             if !pomodoroModel.isStarted {
                                 Button(action: {
                                     pomodoroModel.startTimer()
+                                    timerTip.invalidate(reason: .actionPerformed)
                                 }, label: {
                                     Text("Start")
                                         .font(.title3)

@@ -27,10 +27,27 @@ struct shareNote : Tip {
         Text("Share")
     }
     var message: Text? {
-        Text("Press the button for a while to share")
+        Text("Press the note for a while to share")
     }
     
     var image: Image? {
         Image(systemName: "square.and.arrow.up")
+    }
+}
+
+struct startTimer : Tip {
+    var title: Text{
+        Text("Timer")
+    }
+    
+
+    var message: Text?{
+        Text("Press the buttons for a while to select the timer")
+            .fontWeight(.regular)
+            .font(.callout)
+    }
+    
+    var image: Image? {
+        Image(systemName: "timer")
     }
 }
