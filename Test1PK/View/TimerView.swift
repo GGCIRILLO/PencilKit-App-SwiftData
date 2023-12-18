@@ -123,7 +123,7 @@ struct TimerView: View {
                                         .fill(.black.opacity(0.05))
                                 }
                                 .contextMenu{
-                                    contextMenuOptions(max: 12, hint: "min") { value in
+                                    contextMenuOptions(max: 60, hint: "min") { value in
                                         pomodoroModel.minutes = value
                                     }
                                 }
@@ -140,7 +140,7 @@ struct TimerView: View {
                                         .fill(.black.opacity(0.05))
                                 }
                                 .contextMenu{
-                                    contextMenuOptions(max: 12, hint: "sec") { value in
+                                    contextMenuOptions(max: 60, hint: "sec") { value in
                                         pomodoroModel.seconds = value
                                     }
                                 }
