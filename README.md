@@ -50,7 +50,7 @@ This drawing app combines the power of Swift, UIKit, PencilKit, and SwiftData to
 
 Happy drawing!
 
-#Switch from CoreData to SwiftData
+# Switch from CoreData to SwiftData
 As you may know, I have a very similar repository in my account. There are few differences and one of them is the framework used to store data.
 The transition is not easy, especially when you have to save every minimum change and autosave it, but I did it. 
 First advise is understanding in deep the needs of your code and then try to achieve the solution step by step. Secondly, you can find online the sintax differences between the two frameworks.
